@@ -83,10 +83,7 @@ public class UniversityController {
   
     @GetMapping("/departments/{code}/lecturers") 
     public ResponseEntity<List<LecturerDto>> departmentLecturers(@PathVariable String code) { 
-        return departmentRepository.findWithLecturers(code) 
-                .map(d -> 
-ResponseEntity.ok(d.getLecturers().stream().map(LecturerDto::from).toList())) 
-                .orElse(ResponseEntity.notFound().build()); 
+        return departmentRepository.findWithLecturers(code).map(d -> ResponseEntity.ok(d.getLecturers().stream().map(LecturerDto::from).toList())) .orElse(ResponseEntity.notFound().build()); 
     } 
   
     // ---------- enrollments and reports ---------- 
